@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TUNA Business - HR &amp; Hiring</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed-dim": "#b5c4ff",
+              "surface-container-high": "#e8e8e6",
+              "on-secondary-fixed-variant": "#334479",
+              "surface-container-low": "#f4f4f2",
+              "on-background": "#1a1c1b",
+              "secondary": "#4b5c92",
+              "surface-dim": "#dadad8",
+              "secondary-container": "#b1c2ff",
+              "primary-fixed": "#dbe1ff",
+              "tertiary": "#852b00",
+              "on-tertiary-container": "#ffd4c5",
+              "tertiary-container": "#ad3b00",
+              "on-secondary": "#ffffff",
+              "background": "#f9f9f7",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary": "#ffffff",
+              "secondary-fixed": "#dbe1ff",
+              "on-tertiary-fixed": "#380d00",
+              "surface-variant": "#e2e3e1",
+              "tertiary-fixed": "#ffdbcf",
+              "on-secondary-fixed": "#01174b",
+              "on-primary-fixed": "#00174d",
+              "outline-variant": "#c3c5d7",
+              "primary-container": "#1a56db",
+              "outline": "#737686",
+              "inverse-surface": "#2f3130",
+              "on-error-container": "#93000a",
+              "surface-tint": "#1353d8",
+              "on-primary-fixed-variant": "#003dab",
+              "surface-container": "#eeeeec",
+              "inverse-primary": "#b5c4ff",
+              "error": "#ba1a1a",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#f1f1ef",
+              "on-secondary-container": "#3d4e84",
+              "surface-container-highest": "#e2e3e1",
+              "surface": "#f9f9f7",
+              "surface-bright": "#f9f9f7",
+              "on-surface": "#1a1c1b",
+              "primary": "#003fb1",
+              "on-tertiary-fixed-variant": "#802a00",
+              "on-surface-variant": "#434654",
+              "secondary-fixed-dim": "#b5c4ff",
+              "on-primary-container": "#d4dcff",
+              "tertiary-fixed-dim": "#ffb59a",
+              "error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen pb-24">
+<!-- TopAppBar Execution -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-surface/70 dark:bg-black/70 backdrop-blur-3xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a smiling male HR executive in a tailored navy suit against a clean studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtUKmYz90V0Y0Ix5PGA6h8hI1NdpXs--fItZOMz_P9oQHbK0qjWcVoBkIkpIKmiin_b6PP-qZLrb-kFaNvA7zr2jmmKtRrb2LnbKvRsED5FAMzJpp_B945MlFPVpn_hImtrglt4nDokMm-Vu_NS0MBbYW2KyloA-vWzlYMx-tIgIxvjCTV8vzdRsj6JGVlTOT-WU5Hrc6hRfZFcGZEoUC7Q3xARGOAQorsbn9bBIZp_h03quAUV0CuxbZ6_swG61SFNi8QVO9X2LY"/>
+</div>
+<span class="text-xl font-bold text-blue-800 dark:text-blue-200 font-headline tracking-tight">TUNA Business</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-blue-700 dark:text-blue-400 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">notifications</button>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-7xl mx-auto space-y-12">
+<!-- Welcome Hero (Precision Architect Principle) -->
+<section class="space-y-2">
+<span class="font-label text-label-md text-primary tracking-widest uppercase">HR Performance Suite</span>
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold tracking-tighter text-on-surface">Precision Hiring.</h1>
+<p class="text-on-surface-variant body-lg max-w-xl">Architecting your future workforce with surgical precision and intelligent interview workflows.</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Interview Schedule Tracker (Featured Module) -->
+<div class="md:col-span-8 bg-surface-container-low rounded-DEFAULT p-8 space-y-6">
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<h2 class="font-headline text-2xl font-semibold text-on-surface">Interview Schedule</h2>
+<p class="text-sm text-on-surface-variant font-medium">Prioritizing high-intent candidates for Q3</p>
+</div>
+<button class="bg-surface-container-highest text-primary font-semibold py-2 px-6 rounded-full hover:bg-primary hover:text-white transition-all">View Calendar</button>
+</div>
+<div class="space-y-4">
+<!-- Schedule Item -->
+<div class="flex items-center gap-6 p-6 bg-surface-container-lowest rounded-DEFAULT hover:bg-surface transition-colors cursor-pointer group">
+<div class="flex flex-col items-center justify-center min-w-[64px] border-r border-surface-container pr-6">
+<span class="font-headline font-bold text-xl text-primary">14</span>
+<span class="text-[10px] uppercase tracking-widest font-bold opacity-60">Oct</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline font-semibold text-lg">Jordan Sterling</h4>
+<p class="text-sm text-on-surface-variant">Senior Cloud Architect • Technical Round 2</p>
+</div>
+<div class="text-right hidden md:block">
+<p class="font-headline font-bold text-primary">09:30 AM</p>
+<span class="text-xs text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">Meeting Room 4C</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Schedule Item -->
+<div class="flex items-center gap-6 p-6 bg-surface-container-lowest rounded-DEFAULT hover:bg-surface transition-colors cursor-pointer group">
+<div class="flex flex-col items-center justify-center min-w-[64px] border-r border-surface-container pr-6">
+<span class="font-headline font-bold text-xl text-primary">14</span>
+<span class="text-[10px] uppercase tracking-widest font-bold opacity-60">Oct</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline font-semibold text-lg">Elena Vance</h4>
+<p class="text-sm text-on-surface-variant">Lead Product Designer • Portfolio Review</p>
+</div>
+<div class="text-right hidden md:block">
+<p class="font-headline font-bold text-primary">11:00 AM</p>
+<span class="text-xs text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">Virtual Link</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Schedule Item -->
+<div class="flex items-center gap-6 p-6 bg-surface-container-lowest rounded-DEFAULT hover:bg-surface transition-colors cursor-pointer group opacity-60">
+<div class="flex flex-col items-center justify-center min-w-[64px] border-r border-surface-container pr-6">
+<span class="font-headline font-bold text-xl text-primary">15</span>
+<span class="text-[10px] uppercase tracking-widest font-bold opacity-60">Oct</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline font-semibold text-lg">Marcus Thorne</h4>
+<p class="text-sm text-on-surface-variant">DevOps Engineer • HR Culture Fit</p>
+</div>
+<div class="text-right hidden md:block">
+<p class="font-headline font-bold text-primary">02:30 PM</p>
+<span class="text-xs text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">Meeting Room 2B</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Notifications Integration (Insight Float Panel) -->
+<div class="md:col-span-4 flex flex-col gap-8">
+<div class="bg-primary p-8 rounded-DEFAULT text-on-primary space-y-6 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline text-2xl font-bold">HR Hub</h3>
+<p class="text-on-primary/70 text-sm mt-2">Critical updates required for new hires</p>
+</div>
+<div class="space-y-4">
+<div class="bg-white/10 backdrop-blur-md p-4 rounded-DEFAULT border border-white/5">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-sm mt-1">emergency</span>
+<div>
+<p class="font-semibold text-sm">Background Checks</p>
+<p class="text-xs opacity-70">3 candidates awaiting verification</p>
+</div>
+</div>
+</div>
+<div class="bg-white/10 backdrop-blur-md p-4 rounded-DEFAULT border border-white/5">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-sm mt-1">verified</span>
+<div>
+<p class="font-semibold text-sm">Offer Letters</p>
+<p class="text-xs opacity-70">2 contracts signed today</p>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full bg-white text-primary font-bold py-3 rounded-full hover:bg-on-primary-container transition-all">Review Pipeline</button>
+</div>
+<!-- Quick KPI Insight -->
+<div class="bg-surface-container-highest p-8 rounded-DEFAULT">
+<span class="font-label text-[10px] tracking-widest text-outline uppercase">Success Rate</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="text-4xl font-headline font-bold">92%</span>
+<span class="text-green-600 font-bold text-sm">+4.5%</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-2">Offer acceptance rate this quarter.</p>
+</div>
+</div>
+</div>
+<!-- Open Positions Section (Editorial Authority) -->
+<section class="space-y-8">
+<div class="flex justify-between items-end border-b border-surface-container pb-4">
+<h2 class="font-headline text-3xl font-bold tracking-tight">Active Recruitment</h2>
+<div class="flex gap-4">
+<span class="text-primary font-bold text-sm">All Roles (14)</span>
+<span class="text-on-surface-variant font-medium text-sm">Engineering (8)</span>
+<span class="text-on-surface-variant font-medium text-sm">Design (4)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Job Card -->
+<div class="bg-surface-container rounded-DEFAULT p-6 flex flex-col justify-between h-72 group hover:bg-surface-container-high transition-all duration-300">
+<div>
+<div class="flex justify-between items-start">
+<span class="bg-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-primary">Remote</span>
+<span class="material-symbols-outlined text-outline-variant">bookmark</span>
+</div>
+<h3 class="font-headline text-xl font-bold mt-6 group-hover:text-primary transition-colors">Senior Product Analyst</h3>
+<p class="text-sm text-on-surface-variant mt-2 line-clamp-2">Leading market strategy and data-driven insights for TUNA's enterprise suite.</p>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-on-surface">$140k - $180k</span>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform">Apply</button>
+</div>
+</div>
+<!-- Job Card -->
+<div class="bg-surface-container rounded-DEFAULT p-6 flex flex-col justify-between h-72 group hover:bg-surface-container-high transition-all duration-300">
+<div>
+<div class="flex justify-between items-start">
+<span class="bg-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-primary">On-site</span>
+<span class="material-symbols-outlined text-outline-variant">bookmark</span>
+</div>
+<h3 class="font-headline text-xl font-bold mt-6 group-hover:text-primary transition-colors">Principal Architect</h3>
+<p class="text-sm text-on-surface-variant mt-2 line-clamp-2">Architecting the next generation of scalable B2B infrastructure.</p>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-on-surface">$190k - $240k</span>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform">Apply</button>
+</div>
+</div>
+<!-- Job Card -->
+<div class="bg-surface-container rounded-DEFAULT p-6 flex flex-col justify-between h-72 group hover:bg-surface-container-high transition-all duration-300">
+<div>
+<div class="flex justify-between items-start">
+<span class="bg-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-primary">Hybrid</span>
+<span class="material-symbols-outlined text-outline-variant">bookmark</span>
+</div>
+<h3 class="font-headline text-xl font-bold mt-6 group-hover:text-primary transition-colors">UX Research Lead</h3>
+<p class="text-sm text-on-surface-variant mt-2 line-clamp-2">Directing human-centric research initiatives across our product ecosystem.</p>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-on-surface">$130k - $160k</span>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform">Apply</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Execution -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-surface/70 dark:bg-black/70 backdrop-blur-3xl shadow-[0_-4px_20px_rgba(0,0,0,0.04)] md:hidden">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-1 scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Manrope'] text-[11px] font-medium uppercase tracking-wider mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-1 scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-['Manrope'] text-[11px] font-medium uppercase tracking-wider mt-1">Procure</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-1 scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-['Manrope'] text-[11px] font-medium uppercase tracking-wider mt-1">Support</span>
+</a>
+<!-- Active Tab: Profile -->
+<a class="flex flex-col items-center justify-center bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full px-5 py-1 scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Manrope'] text-[11px] font-bold uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+<!-- Desktop Sidebar/Nav integration (Not rendered as per responsive pivot rule but showing top bar links) -->
+<div class="hidden md:flex fixed top-0 left-1/2 -translate-x-1/2 h-16 items-center gap-8 z-[60]">
+<a class="text-slate-500 hover:text-blue-700 font-semibold text-sm transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 hover:text-blue-700 font-semibold text-sm transition-colors" href="#">Recruitment</a>
+<a class="text-slate-500 hover:text-blue-700 font-semibold text-sm transition-colors" href="#">Talent Pool</a>
+<a class="text-blue-700 font-bold text-sm" href="#">HR Profile</a>
+</div>
+</body></html>

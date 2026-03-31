@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed-dim": "#b5c4ff",
+              "surface-container-high": "#e8e8e6",
+              "on-secondary-fixed-variant": "#334479",
+              "surface-container-low": "#f4f4f2",
+              "on-background": "#1a1c1b",
+              "secondary": "#4b5c92",
+              "surface-dim": "#dadad8",
+              "secondary-container": "#b1c2ff",
+              "primary-fixed": "#dbe1ff",
+              "tertiary": "#852b00",
+              "on-tertiary-container": "#ffd4c5",
+              "tertiary-container": "#ad3b00",
+              "on-secondary": "#ffffff",
+              "background": "#f9f9f7",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary": "#ffffff",
+              "secondary-fixed": "#dbe1ff",
+              "on-tertiary-fixed": "#380d00",
+              "surface-variant": "#e2e3e1",
+              "tertiary-fixed": "#ffdbcf",
+              "on-secondary-fixed": "#01174b",
+              "on-primary-fixed": "#00174d",
+              "outline-variant": "#c3c5d7",
+              "primary-container": "#1a56db",
+              "outline": "#737686",
+              "inverse-surface": "#2f3130",
+              "on-error-container": "#93000a",
+              "surface-tint": "#1353d8",
+              "on-primary-fixed-variant": "#003dab",
+              "surface-container": "#eeeeec",
+              "inverse-primary": "#b5c4ff",
+              "error": "#ba1a1a",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#f1f1ef",
+              "on-secondary-container": "#3d4e84",
+              "surface-container-highest": "#e2e3e1",
+              "surface": "#f9f9f7",
+              "surface-bright": "#f9f9f7",
+              "on-surface": "#1a1c1b",
+              "primary": "#003fb1",
+              "on-tertiary-fixed-variant": "#802a00",
+              "on-surface-variant": "#434654",
+              "secondary-fixed-dim": "#b5c4ff",
+              "on-primary-container": "#d4dcff",
+              "tertiary-fixed-dim": "#ffb59a",
+              "error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        backdrop-filter: blur(24px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background min-h-screen flex items-center justify-center overflow-x-hidden">
+<!-- Background Decorative Elements -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-secondary/5 blur-[120px]"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 w-full max-w-[1200px] px-6 py-12 flex flex-col md:flex-row items-center gap-16 lg:gap-24">
+<!-- Left Column: Branding & Value Prop -->
+<div class="w-full md:w-1/2 flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<h1 class="font-headline text-primary text-4xl lg:text-5xl font-extrabold tracking-tight">
+                    TUNA Business
+                </h1>
+<p class="font-headline text-on-surface-variant text-lg lg:text-xl font-medium max-w-md">
+                    Seamless architectural intelligence for the modern enterprise ecosystem.
+                </p>
+</div>
+<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Modern high-end office interior with minimalist furniture, large windows, and soft natural lighting creating a professional atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy1vPB3JU8y08FiDPfl9yEAUdI0vxI6dIabTdz81Aodc_98aGnKMV4oDyOinL3EFhd73tV3YEavyjYQq8suDlZW8xeb3ATurg-2Hpa-OOv7E8do6_cAkqG7GSBR-O8dwyuD1n39woetbT774ouYsQrma8NSGHP7qnqJ12C2VSY0fYi_DYBYJYBO73cR_O4Gkh176ervIlIXff7rJ37J1ScU6e99nnaB9w57xpccaiMSPQ4PdZ2GXcDAU3kWKCUl1MAkz80zOexR9g"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4 p-4 rounded-DEFAULT bg-surface-container-low">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<p class="font-headline font-semibold text-sm">Enterprise Security</p>
+<p class="text-xs text-on-surface-variant">Role-based access control with biometric support.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Role Selector -->
+<div class="w-full md:w-1/2">
+<div class="bg-surface-container-lowest p-8 lg:p-12 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.04)] flex flex-col gap-8 border border-outline-variant/10">
+<div class="flex flex-col gap-2">
+<h2 class="font-headline text-2xl font-bold text-on-surface">Select Your Portal</h2>
+<p class="text-on-surface-variant text-sm">Choose your designated workspace to proceed.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Developer Role -->
+<button class="group flex flex-col items-start p-6 rounded-DEFAULT bg-surface-container hover:bg-surface-container-high transition-all duration-300 text-left border-l-4 border-primary">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Developer</span>
+<span class="text-[11px] font-label text-on-surface-variant uppercase tracking-widest mt-1">API &amp; Infrastructure</span>
+</button>
+<!-- Staff Role -->
+<button class="group flex flex-col items-start p-6 rounded-DEFAULT bg-surface-container hover:bg-surface-container-high transition-all duration-300 text-left border-l-4 border-secondary">
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Staff</span>
+<span class="text-[11px] font-label text-on-surface-variant uppercase tracking-widest mt-1">Operations &amp; Tasks</span>
+</button>
+<!-- Management Role -->
+<button class="group flex flex-col items-start p-6 rounded-DEFAULT bg-surface-container hover:bg-surface-container-high transition-all duration-300 text-left border-l-4 border-tertiary">
+<div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Management</span>
+<span class="text-[11px] font-label text-on-surface-variant uppercase tracking-widest mt-1">Insights &amp; Strategy</span>
+</button>
+<!-- Customer Role -->
+<button class="group flex flex-col items-start p-6 rounded-DEFAULT bg-surface-container hover:bg-surface-container-high transition-all duration-300 text-left border-l-4 border-outline">
+<div class="w-12 h-12 rounded-full bg-outline/10 flex items-center justify-center text-outline mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Customer</span>
+<span class="text-[11px] font-label text-on-surface-variant uppercase tracking-widest mt-1">Account &amp; Services</span>
+</button>
+</div>
+<div class="flex flex-col gap-4 mt-4">
+<!-- Primary Login Button (Implicit Role or General) -->
+<button class="w-full h-[50px] bg-primary-container text-on-primary-container font-headline font-bold rounded-full flex items-center justify-center gap-2 hover:bg-primary transition-colors shadow-lg shadow-primary/20">
+                        Continue to Workspace
+                        <span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+<button class="w-full h-[50px] bg-surface-container-highest text-on-surface font-headline font-semibold rounded-full flex items-center justify-center gap-2 hover:bg-surface-dim transition-colors">
+                        SSO Login
+                        <span class="material-symbols-outlined text-xl">key</span>
+</button>
+</div>
+<div class="flex justify-between items-center text-xs text-on-surface-variant px-2">
+<a class="hover:text-primary transition-colors" href="#">Need assistance?</a>
+<span class="opacity-30">|</span>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<span class="opacity-30">|</span>
+<span class="font-label">v2.4.0</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Global Footer Branding (Subtle) -->
+<footer class="fixed bottom-8 w-full text-center pointer-events-none">
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/40 font-label">
+            © 2024 TUNA Business Solutions. Engineered for Excellence.
+        </p>
+</footer>
+</body></html>
