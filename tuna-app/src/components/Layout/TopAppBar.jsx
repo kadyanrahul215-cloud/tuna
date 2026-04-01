@@ -1,24 +1,26 @@
 import { useAuth } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { useTheme } from '../../contexts/ThemeContext'
 
 export default function TopAppBar({ onToggleSidebar, sidebarCollapsed }) {
   const { user, logout } = useAuth()
+  const { isDark, toggleTheme } = useTheme()
   const navigate = useNavigate()
 
   return (
-    <header style={{
+    <header className="glass" style={{
       position: 'sticky',
       top: 0,
       zIndex: 50,
       height: '64px',
-      backgroundColor: 'rgba(255, 255, 255, 0.85)',
-      backdropFilter: 'blur(20px)',
-      WebkitBackdropFilter: 'blur(20px)',
       borderBottom: '1px solid var(--color-border)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       padding: '0 1.5rem',
+      borderTop: 'none',
+      borderLeft: 'none',
+      borderRight: 'none',
     }}>
       {/* Left: Logo + Toggle */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -125,8 +127,38 @@ export default function TopAppBar({ onToggleSidebar, sidebarCollapsed }) {
             height: '8px',
             borderRadius: '50%',
             backgroundColor: '#ef4444',
-            border: '2px solid #fff',
+            border: '2px solid var(--color-surface)',
           }} />
+        </button>
+
+        <button
+          onClick={toggleTheme}
+          aria-label="Toggle dark mode"
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '0.75rem',
+            border: 'none',
+            background: 'none',
+            cursor: 'pointer',
+            color: 'var(--color-text-secondary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.2s ease',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = 'var(--color-surface-100)'
+            e.currentTarget.style.color = 'var(--color-text)'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = 'transparent'
+            e.currentTarget.style.color = 'var(--color-text-secondary)'
+          }}
+        >
+          <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
+            {isDark ? 'light_mode' : 'dark_mode'}
+          </span>
         </button>
 
         <div

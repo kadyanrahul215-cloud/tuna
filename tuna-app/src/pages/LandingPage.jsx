@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { useTheme } from '../contexts/ThemeContext'
 
 export default function LandingPage() {
   const { isAuthenticated } = useAuth()
+  const { isDark, toggleTheme } = useTheme()
 
   const features = [
     { icon: 'inventory_2', title: 'Smart Procurement', desc: 'Streamline vendor management and purchasing workflows with AI-driven insights.' },
@@ -22,14 +24,15 @@ export default function LandingPage() {
   return (
     <div style={{ minHeight: '100dvh', overflow: 'hidden' }}>
       {/* Navbar */}
-      <nav style={{
+      <nav className="glass" style={{
         position: 'sticky', top: 0, zIndex: 100,
-        backgroundColor: 'rgba(255,255,255,0.85)',
-        backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
         borderBottom: '1px solid var(--color-border)',
         padding: '0 1.5rem', height: '64px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         maxWidth: '100%',
+        borderTop: 'none',
+        borderLeft: 'none',
+        borderRight: 'none',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div style={{
@@ -40,7 +43,38 @@ export default function LandingPage() {
           }}>T</div>
           <span style={{ fontWeight: 700, fontSize: '1.125rem', letterSpacing: '-0.02em' }}>TUNA</span>
         </div>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle dark mode"
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '0.75rem',
+              border: 'none',
+              background: 'none',
+              cursor: 'pointer',
+              color: 'var(--color-text-secondary)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s ease',
+              marginRight: '0.5rem',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.backgroundColor = 'var(--color-surface-100)'
+              e.currentTarget.style.color = 'var(--color-text)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.backgroundColor = 'transparent'
+              e.currentTarget.style.color = 'var(--color-text-secondary)'
+            }}
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
+              {isDark ? 'light_mode' : 'dark_mode'}
+            </span>
+          </button>
+          
           {isAuthenticated ? (
             <Link to="/dashboard" style={{
               padding: '0.625rem 1.25rem', borderRadius: '0.75rem', border: 'none',
@@ -52,7 +86,7 @@ export default function LandingPage() {
             <>
               <Link to="/login" style={{
                 padding: '0.625rem 1.25rem', borderRadius: '0.75rem',
-                border: '1.5px solid var(--color-border)', backgroundColor: '#fff',
+                border: '1.5px solid var(--color-border)', backgroundColor: 'var(--color-surface)',
                 color: 'var(--color-text)', fontWeight: 600, fontSize: '0.8125rem', textDecoration: 'none',
                 transition: 'all 0.2s ease',
               }}>Sign in</Link>
@@ -128,7 +162,7 @@ export default function LandingPage() {
             <Link to="/login" style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
               padding: '0.875rem 2rem', borderRadius: '0.75rem',
-              border: '1.5px solid var(--color-border)', backgroundColor: '#fff',
+              border: '1.5px solid var(--color-border)', backgroundColor: 'var(--color-surface)',
               color: 'var(--color-text)', fontWeight: 600, fontSize: '1rem', textDecoration: 'none',
               transition: 'all 0.2s ease',
             }}>
@@ -159,7 +193,7 @@ export default function LandingPage() {
         }}>
           {features.map((f, i) => (
             <div key={i} style={{
-              backgroundColor: '#fff', borderRadius: '1.25rem', padding: '2rem',
+              backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem', padding: '2rem',
               border: '1px solid var(--color-border)',
               transition: 'all 0.2s ease', cursor: 'pointer',
             }}
@@ -190,7 +224,7 @@ export default function LandingPage() {
       {/* Testimonials */}
       <section style={{
         padding: '5rem 1.5rem',
-        background: 'linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%)',
+        background: 'linear-gradient(180deg, var(--color-surface-50) 0%, var(--color-primary-50) 100%)',
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
@@ -208,7 +242,7 @@ export default function LandingPage() {
           }}>
             {testimonials.map((t, i) => (
               <div key={i} style={{
-                backgroundColor: '#fff', borderRadius: '1.25rem', padding: '2rem',
+                backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem', padding: '2rem',
                 border: '1px solid var(--color-border)',
               }}>
                 <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1rem' }}>
@@ -267,7 +301,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer style={{
         borderTop: '1px solid var(--color-border)',
-        padding: '3rem 1.5rem', backgroundColor: '#fff',
+        padding: '3rem 1.5rem', backgroundColor: 'var(--color-surface)',
       }}>
         <div style={{
           maxWidth: '1200px', margin: '0 auto',

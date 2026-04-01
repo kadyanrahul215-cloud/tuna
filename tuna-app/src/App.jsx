@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { ToastProvider } from './contexts/ToastContext'
+import { ThemeProvider } from './contexts/ThemeContext'
 import LandingPage from './pages/LandingPage'
 import LoginPage from './pages/LoginPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
@@ -71,11 +72,13 @@ function AppRoutes() {
 export default function App() {
   return (
     <Router>
-      <AuthProvider>
-        <ToastProvider>
-          <AppRoutes />
-        </ToastProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <ToastProvider>
+            <AppRoutes />
+          </ToastProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </Router>
   )
 }

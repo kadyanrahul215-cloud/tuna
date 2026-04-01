@@ -59,7 +59,7 @@ export default function ProfilePage() {
 
         {/* Profile Header */}
         <div style={{
-          backgroundColor: '#fff',
+          backgroundColor: 'var(--color-surface)',
           borderRadius: '1.25rem',
           border: '1px solid var(--color-border)',
           overflow: 'hidden',
@@ -78,7 +78,7 @@ export default function ProfilePage() {
               background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               color: '#fff', fontWeight: 700, fontSize: '1.75rem',
-              border: '4px solid #fff', boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              border: '4px solid var(--color-surface)', boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
               marginBottom: '1rem',
             }}>
               {user?.full_name?.charAt(0)?.toUpperCase() || 'U'}
@@ -125,15 +125,15 @@ export default function ProfilePage() {
         }}>
           {stats.map((stat, i) => (
             <div key={i} style={{
-              backgroundColor: '#fff', borderRadius: '1rem', padding: '1.25rem',
+              backgroundColor: 'var(--color-surface)', borderRadius: '1rem', padding: '1.25rem',
               border: '1px solid var(--color-border)',
               display: 'flex', alignItems: 'center', gap: '1rem',
             }}>
               <div style={{
                 width: '42px', height: '42px', borderRadius: '0.75rem',
-                backgroundColor: '#eef2ff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                backgroundColor: 'rgba(79, 70, 229, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <span className="material-symbols-outlined" style={{ fontSize: '20px', color: '#4f46e5' }}>{stat.icon}</span>
+                <span className="material-symbols-outlined" style={{ fontSize: '20px', color: 'var(--color-primary)' }}>{stat.icon}</span>
               </div>
               <div>
                 <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{stat.label}</p>
@@ -145,7 +145,7 @@ export default function ProfilePage() {
 
         {/* Profile Form */}
         <div style={{
-          backgroundColor: '#fff', borderRadius: '1.25rem',
+          backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
           border: '1px solid var(--color-border)', padding: '2rem',
         }}>
           <h2 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '1.5rem' }}>Personal Information</h2>
@@ -199,7 +199,7 @@ export default function ProfilePage() {
                 onClick={() => { setEditing(false); setFullName(user?.full_name || ''); }}
                 style={{
                   padding: '0.625rem 1.25rem', borderRadius: '0.75rem',
-                  border: '1.5px solid var(--color-border)', backgroundColor: '#fff',
+                  border: '1.5px solid var(--color-border)', backgroundColor: 'var(--color-surface)',
                   color: 'var(--color-text)', fontWeight: 600, fontSize: '0.8125rem', cursor: 'pointer',
                 }}
               >Cancel</button>

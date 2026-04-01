@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { useToast } from '../contexts/ToastContext'
+import { useTheme } from '../contexts/ThemeContext'
 import AppLayout from '../components/Layout/AppLayout'
 
 export default function SettingsPage() {
   const toast = useToast()
+  const { isDark, toggleTheme } = useTheme()
   const [settings, setSettings] = useState({
     emailNotifications: true,
     pushNotifications: false,
     marketingEmails: false,
     twoFactor: true,
-    darkMode: false,
     compactView: false,
     language: 'en',
     timezone: 'UTC-5',
@@ -31,7 +32,7 @@ export default function SettingsPage() {
       }}
     >
       <div style={{
-        width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#fff',
+        width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--color-surface)',
         position: 'absolute', top: '3px',
         left: checked ? '25px' : '3px',
         transition: 'left 0.2s ease',
@@ -42,7 +43,7 @@ export default function SettingsPage() {
 
   const Section = ({ title, children }) => (
     <div style={{
-      backgroundColor: '#fff', borderRadius: '1.25rem',
+      backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
       border: '1px solid var(--color-border)', padding: '1.5rem',
     }}>
       <h2 style={{ fontSize: '1.0625rem', fontWeight: 700, marginBottom: '1.25rem' }}>{title}</h2>
@@ -113,11 +114,11 @@ export default function SettingsPage() {
             action={
               <button style={{
                 padding: '0.5rem 1rem', borderRadius: '0.625rem',
-                border: '1.5px solid var(--color-border)', backgroundColor: '#fff',
+                border: '1.5px solid var(--color-border)', backgroundColor: 'var(--color-surface)',
                 fontSize: '0.8125rem', fontWeight: 600, cursor: 'pointer', color: 'var(--color-text)',
                 transition: 'all 0.2s ease', whiteSpace: 'nowrap',
               }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = '#4f46e5'}
+                onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--color-primary)'}
                 onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--color-border)'}
               >Change</button>
             }
@@ -128,11 +129,11 @@ export default function SettingsPage() {
             action={
               <button style={{
                 padding: '0.5rem 1rem', borderRadius: '0.625rem',
-                border: '1.5px solid var(--color-border)', backgroundColor: '#fff',
+                border: '1.5px solid var(--color-border)', backgroundColor: 'var(--color-surface)',
                 fontSize: '0.8125rem', fontWeight: 600, cursor: 'pointer', color: 'var(--color-text)',
                 transition: 'all 0.2s ease', whiteSpace: 'nowrap',
               }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = '#4f46e5'}
+                onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--color-primary)'}
                 onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--color-border)'}
               >Manage</button>
             }
@@ -143,7 +144,7 @@ export default function SettingsPage() {
           <SettingRow
             icon="dark_mode" label="Dark Mode"
             description="Toggle dark color scheme"
-            toggle={<ToggleSwitch checked={settings.darkMode} onChange={() => toggle('darkMode')} />}
+            toggle={<ToggleSwitch checked={isDark} onChange={toggleTheme} />}
           />
           <SettingRow
             icon="view_compact" label="Compact View"
@@ -162,7 +163,7 @@ export default function SettingsPage() {
                 onChange={e => setSettings(p => ({...p, language: e.target.value}))}
                 style={{
                   padding: '0.5rem 0.75rem', borderRadius: '0.625rem',
-                  border: '1.5px solid var(--color-border)', backgroundColor: '#fff',
+                  border: '1.5px solid var(--color-border)', backgroundColor: 'var(--color-surface)',
                   fontSize: '0.8125rem', fontWeight: 500, cursor: 'pointer', color: 'var(--color-text)',
                 }}
               >
@@ -182,7 +183,7 @@ export default function SettingsPage() {
                 onChange={e => setSettings(p => ({...p, timezone: e.target.value}))}
                 style={{
                   padding: '0.5rem 0.75rem', borderRadius: '0.625rem',
-                  border: '1.5px solid var(--color-border)', backgroundColor: '#fff',
+                  border: '1.5px solid var(--color-border)', backgroundColor: 'var(--color-surface)',
                   fontSize: '0.8125rem', fontWeight: 500, cursor: 'pointer', color: 'var(--color-text)',
                 }}
               >
@@ -197,20 +198,20 @@ export default function SettingsPage() {
 
         {/* Danger Zone */}
         <div style={{
-          backgroundColor: '#fff', borderRadius: '1.25rem',
+          backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
           border: '1px solid var(--color-error-bg)', padding: '1.5rem',
         }}>
-          <h2 style={{ fontSize: '1.0625rem', fontWeight: 700, color: '#ef4444', marginBottom: '0.5rem' }}>Danger Zone</h2>
+          <h2 style={{ fontSize: '1.0625rem', fontWeight: 700, color: 'var(--color-error)', marginBottom: '0.5rem' }}>Danger Zone</h2>
           <p style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)', marginBottom: '1.25rem' }}>
             Irreversible actions that affect your account
           </p>
           <button style={{
-            padding: '0.625rem 1.25rem', borderRadius: '0.75rem', border: '1.5px solid #fca5a5',
-            backgroundColor: '#fff', color: '#ef4444', fontWeight: 600, fontSize: '0.8125rem',
+            padding: '0.625rem 1.25rem', borderRadius: '0.75rem', border: '1.5px solid rgba(239, 68, 68, 0.4)',
+            backgroundColor: 'var(--color-surface)', color: 'var(--color-error)', fontWeight: 600, fontSize: '0.8125rem',
             cursor: 'pointer', transition: 'all 0.2s ease',
           }}
-            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#fef2f2' }}
-            onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#fff' }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.1)' }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'var(--color-surface)' }}
           >
             Delete Account
           </button>

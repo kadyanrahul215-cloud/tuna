@@ -16,10 +16,10 @@ export default function DashboardPage() {
   const activities = mockData.activities
 
   const statusColor = {
-    Active: { bg: '#eef2ff', text: '#4f46e5' },
-    Urgent: { bg: '#fef2f2', text: '#ef4444' },
-    Review: { bg: '#f0fdf4', text: '#16a34a' },
-    Pending: { bg: '#faf5ff', text: '#9333ea' },
+    Active: { bg: 'rgba(79, 70, 229, 0.12)', text: 'var(--color-primary)' },
+    Urgent: { bg: 'rgba(239, 68, 68, 0.12)', text: 'var(--color-error)' },
+    Review: { bg: 'rgba(16, 185, 129, 0.12)', text: 'var(--color-success)' },
+    Pending: { bg: 'rgba(245, 158, 11, 0.12)', text: 'var(--color-warning)' },
   }
 
   return (
@@ -71,7 +71,7 @@ export default function DashboardPage() {
             <div
               key={kpi.id}
               style={{
-                backgroundColor: '#fff',
+                backgroundColor: 'var(--color-surface)',
                 borderRadius: '1rem',
                 padding: '1.5rem',
                 border: '1px solid var(--color-border)',
@@ -91,7 +91,7 @@ export default function DashboardPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <div style={{
                   width: '42px', height: '42px', borderRadius: '0.75rem',
-                  backgroundColor: '#eef2ff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: 'rgba(79, 70, 229, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
                   <span className="material-symbols-outlined filled" style={{ fontSize: '20px', color: '#4f46e5' }}>
                     {kpi.icon}
@@ -99,8 +99,8 @@ export default function DashboardPage() {
                 </div>
                 <span style={{
                   fontSize: '0.75rem', fontWeight: 600,
-                  color: kpi.changeType === 'positive' ? '#16a34a' : '#94a3b8',
-                  backgroundColor: kpi.changeType === 'positive' ? '#f0fdf4' : '#f8fafc',
+                  color: kpi.changeType === 'positive' ? 'var(--color-success)' : 'var(--color-text-tertiary)',
+                  backgroundColor: kpi.changeType === 'positive' ? 'rgba(16, 185, 129, 0.1)' : 'var(--color-surface-100)',
                   padding: '0.25rem 0.625rem', borderRadius: '9999px',
                 }}>
                   {kpi.change}
@@ -124,7 +124,7 @@ export default function DashboardPage() {
         }} className="dashboard-grid">
           {/* Recent Activity */}
           <div style={{
-            backgroundColor: '#fff',
+            backgroundColor: 'var(--color-surface)',
             borderRadius: '1rem',
             border: '1px solid var(--color-border)',
             padding: '1.5rem',
@@ -139,7 +139,7 @@ export default function DashboardPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {activities.map((act, i) => {
-                const sc = statusColor[act.status] || { bg: '#f8fafc', text: '#64748b' }
+                const sc = statusColor[act.status] || { bg: 'var(--color-surface-100)', text: 'var(--color-text-secondary)' }
                 return (
                   <div
                     key={act.id}
@@ -154,7 +154,7 @@ export default function DashboardPage() {
                   >
                     <div style={{
                       width: '42px', height: '42px', borderRadius: '0.75rem',
-                      backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      backgroundColor: 'var(--color-surface-100)', display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
                     }}>
                       <span className="material-symbols-outlined" style={{ fontSize: '20px', color: 'var(--color-text-secondary)' }}>
@@ -184,7 +184,7 @@ export default function DashboardPage() {
 
           {/* Insight Card */}
           <div style={{
-            backgroundColor: '#fff',
+            backgroundColor: 'var(--color-surface)',
             borderRadius: '1rem',
             border: '1px solid var(--color-border)',
             padding: '1.5rem',

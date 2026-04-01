@@ -5,9 +5,9 @@ export default function ProcurementPage() {
   const { purchaseOrders, suppliers } = mockData
 
   const statusStyle = {
-    'Delivered': { bg: '#f0fdf4', text: '#16a34a' },
-    'In Review': { bg: '#eef2ff', text: '#4f46e5' },
-    'Urgent': { bg: '#fef2f2', text: '#ef4444' },
+    'Delivered': { bg: 'rgba(16, 185, 129, 0.12)', text: 'var(--color-success)' },
+    'In Review': { bg: 'rgba(79, 70, 229, 0.12)', text: 'var(--color-primary)' },
+    'Urgent': { bg: 'rgba(239, 68, 68, 0.12)', text: 'var(--color-error)' },
   }
 
   return (
@@ -35,7 +35,7 @@ export default function ProcurementPage() {
 
         {/* Purchase Orders */}
         <div style={{
-          backgroundColor: '#fff', borderRadius: '1.25rem',
+          backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
           border: '1px solid var(--color-border)', overflow: 'hidden',
         }}>
           <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--color-border)' }}>
@@ -56,7 +56,7 @@ export default function ProcurementPage() {
               </thead>
               <tbody>
                 {purchaseOrders.map(po => {
-                  const ss = statusStyle[po.status] || { bg: '#f8fafc', text: '#64748b' }
+                  const ss = statusStyle[po.status] || { bg: 'var(--color-surface-100)', text: 'var(--color-text-secondary)' }
                   return (
                     <tr key={po.id} style={{
                       borderBottom: '1px solid var(--color-border-light)',
@@ -85,7 +85,7 @@ export default function ProcurementPage() {
 
         {/* Preferred Suppliers */}
         <div style={{
-          backgroundColor: '#fff', borderRadius: '1.25rem',
+          backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
           border: '1px solid var(--color-border)', padding: '1.5rem',
         }}>
           <h2 style={{ fontSize: '1.0625rem', fontWeight: 700, marginBottom: '1.25rem' }}>Preferred Suppliers</h2>
@@ -101,7 +101,7 @@ export default function ProcurementPage() {
                 transition: 'all 0.2s ease', cursor: 'pointer',
               }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = '#4f46e5'
+                  e.currentTarget.style.borderColor = 'var(--color-primary)'
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.04)'
                 }}
                 onMouseLeave={e => {
@@ -111,7 +111,7 @@ export default function ProcurementPage() {
               >
                 <div style={{
                   width: '42px', height: '42px', borderRadius: '0.75rem',
-                  backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: 'var(--color-surface-100)', display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0,
                 }}>
                   <span className="material-symbols-outlined" style={{ fontSize: '20px', color: 'var(--color-text-secondary)' }}>business</span>
@@ -123,8 +123,8 @@ export default function ProcurementPage() {
                 <span style={{
                   fontSize: '0.6875rem', fontWeight: 600, padding: '0.25rem 0.625rem',
                   borderRadius: '9999px',
-                  backgroundColor: s.status === 'active' ? '#f0fdf4' : '#fffbeb',
-                  color: s.status === 'active' ? '#16a34a' : '#d97706',
+                  backgroundColor: s.status === 'active' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(245, 158, 11, 0.12)',
+                  color: s.status === 'active' ? 'var(--color-success)' : 'var(--color-warning)',
                   textTransform: 'capitalize',
                 }}>{s.status}</span>
               </div>

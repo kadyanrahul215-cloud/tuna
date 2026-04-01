@@ -25,9 +25,9 @@ export default function SupportPage() {
   }
 
   const statusStyle = {
-    'In Progress': { bg: '#eef2ff', text: '#4f46e5' },
-    'Open': { bg: '#fffbeb', text: '#d97706' },
-    'Resolved': { bg: '#f0fdf4', text: '#16a34a' },
+    'In Progress': { bg: 'rgba(79, 70, 229, 0.12)', text: 'var(--color-primary)' },
+    'Open': { bg: 'rgba(245, 158, 11, 0.12)', text: 'var(--color-warning)' },
+    'Resolved': { bg: 'rgba(16, 185, 129, 0.12)', text: 'var(--color-success)' },
   }
 
   return (
@@ -41,7 +41,7 @@ export default function SupportPage() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.25rem' }} className="support-grid">
           {/* Tickets */}
           <div style={{
-            backgroundColor: '#fff', borderRadius: '1.25rem',
+            backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
             border: '1px solid var(--color-border)', padding: '1.5rem',
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
@@ -58,19 +58,19 @@ export default function SupportPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {supportTickets.map(t => {
-                const ss = statusStyle[t.status] || { bg: '#f8fafc', text: '#64748b' }
+                const ss = statusStyle[t.status] || { bg: 'var(--color-surface-100)', text: 'var(--color-text-secondary)' }
                 return (
                   <div key={t.id} style={{
                     display: 'flex', alignItems: 'center', gap: '1rem',
                     padding: '1rem', borderRadius: '0.75rem', border: '1px solid var(--color-border)',
                     transition: 'all 0.2s ease', cursor: 'pointer',
                   }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = '#4f46e5'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--color-primary)'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)' }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--color-border)'; e.currentTarget.style.boxShadow = 'none' }}
                   >
                     <div style={{
                       width: '38px', height: '38px', borderRadius: '0.625rem',
-                      backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      backgroundColor: 'var(--color-surface-100)', display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
                     }}>
                       <span className="material-symbols-outlined" style={{ fontSize: '18px', color: 'var(--color-text-secondary)' }}>{t.icon}</span>
@@ -94,7 +94,7 @@ export default function SupportPage() {
 
           {/* Live Chat */}
           <div style={{
-            backgroundColor: '#fff', borderRadius: '1.25rem',
+            backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
             border: '1px solid var(--color-border)', display: 'flex', flexDirection: 'column',
             height: '400px',
           }}>
@@ -112,8 +112,8 @@ export default function SupportPage() {
                 }}>
                   <div style={{
                     padding: '0.75rem 1rem', borderRadius: '1rem',
-                    backgroundColor: m.sender === 'user' ? '#4f46e5' : '#f1f5f9',
-                    color: m.sender === 'user' ? '#fff' : 'var(--color-text)',
+                    backgroundColor: m.sender === 'user' ? 'var(--color-primary)' : 'var(--color-surface-100)',
+                    color: m.sender === 'user' ? 'var(--color-text-inverse)' : 'var(--color-text)',
                     fontSize: '0.8125rem', lineHeight: 1.5,
                   }}>{m.text}</div>
                   <p style={{
@@ -152,7 +152,7 @@ export default function SupportPage() {
 
         {/* FAQ */}
         <div style={{
-          backgroundColor: '#fff', borderRadius: '1.25rem',
+          backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
           border: '1px solid var(--color-border)', padding: '1.5rem',
         }}>
           <h2 style={{ fontSize: '1.0625rem', fontWeight: 700, marginBottom: '1.25rem' }}>Frequently Asked Questions</h2>
@@ -166,7 +166,7 @@ export default function SupportPage() {
                   onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
                   style={{
                     width: '100%', padding: '1rem 1.25rem',
-                    background: openFaq === faq.id ? 'var(--color-surface-50)' : '#fff',
+                    background: openFaq === faq.id ? 'var(--color-surface-50)' : 'var(--color-surface)',
                     border: 'none', cursor: 'pointer',
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-text)',

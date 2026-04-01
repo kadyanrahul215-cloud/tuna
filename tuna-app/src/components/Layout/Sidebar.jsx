@@ -43,7 +43,7 @@ export default function Sidebar({ collapsed, onToggle }) {
     left: 0,
     height: isMobile ? '100dvh' : 'calc(100dvh - 64px)',
     width: isMobile ? '280px' : sidebarWidth,
-    backgroundColor: '#ffffff',
+    backgroundColor: 'var(--color-surface)',
     borderRight: '1px solid var(--color-border)',
     display: 'flex',
     flexDirection: 'column',

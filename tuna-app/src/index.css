@@ -78,6 +78,31 @@
   --animate-shimmer: shimmer 2s linear infinite;
 }
 
+:root.dark {
+  --color-surface-50: #0f172a;
+  --color-surface-100: #1e293b;
+  --color-surface-200: #334155;
+  --color-surface-300: #475569;
+  --color-surface-400: #64748b;
+  --color-surface-500: #94a3b8;
+  --color-surface-600: #cbd5e1;
+  --color-surface-700: #e2e8f0;
+  --color-surface-800: #f1f5f9;
+  --color-surface-900: #f8fafc;
+  
+  --color-surface: #1e293b;
+  --color-bg: #0f172a;
+  --color-bg-alt: #1e293b;
+  
+  --color-text: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  --color-text-inverse: #0f172a;
+  
+  --color-border: #334155;
+  --color-border-light: #1e293b;
+}
+
 /* ===== KEYFRAMES ===== */
 @keyframes fade-in {
   from { opacity: 0; }
@@ -152,6 +177,7 @@ body {
   min-height: 100dvh;
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 ::selection {
@@ -199,10 +225,20 @@ input:focus, textarea:focus, select:focus {
 
 /* ===== GLASS MORPHISM ===== */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--color-surface);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--color-border);
+}
+
+:root:not(.dark) .glass {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+:root.dark .glass {
+  background: rgba(30, 41, 59, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ===== GRADIENT PRESETS ===== */

@@ -5,9 +5,9 @@ export default function HRPage() {
   const { interviews, jobPostings } = mockData
 
   const typeColor = {
-    'Remote': { bg: '#f0fdf4', text: '#16a34a' },
-    'On-site': { bg: '#eef2ff', text: '#4f46e5' },
-    'Hybrid': { bg: '#faf5ff', text: '#9333ea' },
+    'Remote': { bg: 'rgba(16, 185, 129, 0.12)', text: 'var(--color-success)' },
+    'On-site': { bg: 'rgba(79, 70, 229, 0.12)', text: 'var(--color-primary)' },
+    'Hybrid': { bg: 'rgba(147, 51, 234, 0.12)', text: '#c084fc' },
   }
 
   return (
@@ -20,7 +20,7 @@ export default function HRPage() {
 
         {/* Upcoming Interviews */}
         <div style={{
-          backgroundColor: '#fff', borderRadius: '1.25rem',
+          backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
           border: '1px solid var(--color-border)', padding: '1.5rem',
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
@@ -42,18 +42,18 @@ export default function HRPage() {
                 padding: '1rem', borderRadius: '0.75rem', border: '1px solid var(--color-border)',
                 transition: 'all 0.2s ease', cursor: 'pointer',
               }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = '#4f46e5'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--color-primary)'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)' }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--color-border)'; e.currentTarget.style.boxShadow = 'none' }}
               >
                 {/* Date Badge */}
                 <div style={{
                   width: '52px', height: '56px', borderRadius: '0.75rem',
-                  background: 'linear-gradient(135deg, #eef2ff, #e0e7ff)',
+                  backgroundColor: 'rgba(79, 70, 229, 0.12)',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0,
                 }}>
-                  <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#4f46e5', lineHeight: 1 }}>{interview.day}</span>
-                  <span style={{ fontSize: '0.625rem', fontWeight: 600, color: '#818cf8', textTransform: 'uppercase' }}>{interview.month}</span>
+                  <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-primary)', lineHeight: 1 }}>{interview.day}</span>
+                  <span style={{ fontSize: '0.625rem', fontWeight: 600, color: 'var(--color-primary-light)', textTransform: 'uppercase' }}>{interview.month}</span>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <p style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: '0.125rem' }}>{interview.name}</p>
@@ -70,7 +70,7 @@ export default function HRPage() {
 
         {/* Job Postings */}
         <div style={{
-          backgroundColor: '#fff', borderRadius: '1.25rem',
+          backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem',
           border: '1px solid var(--color-border)', padding: '1.5rem',
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
@@ -91,7 +91,7 @@ export default function HRPage() {
             gap: '1rem',
           }}>
             {jobPostings.map(job => {
-              const tc = typeColor[job.type] || { bg: '#f8fafc', text: '#64748b' }
+              const tc = typeColor[job.type] || { bg: 'var(--color-surface-100)', text: 'var(--color-text-secondary)' }
               return (
                 <div key={job.id} style={{
                   padding: '1.5rem', borderRadius: '1rem', border: '1px solid var(--color-border)',
@@ -109,9 +109,9 @@ export default function HRPage() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
                     <div style={{
                       width: '42px', height: '42px', borderRadius: '0.75rem',
-                      backgroundColor: '#eef2ff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      backgroundColor: 'rgba(79, 70, 229, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      <span className="material-symbols-outlined" style={{ fontSize: '20px', color: '#4f46e5' }}>work</span>
+                      <span className="material-symbols-outlined" style={{ fontSize: '20px', color: 'var(--color-primary)' }}>work</span>
                     </div>
                     <span style={{
                       fontSize: '0.6875rem', fontWeight: 600, padding: '0.25rem 0.625rem',
@@ -121,7 +121,7 @@ export default function HRPage() {
                   <h3 style={{ fontSize: '0.9375rem', fontWeight: 700, marginBottom: '0.375rem' }}>{job.title}</h3>
                   <p style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)', marginBottom: '0.75rem', flex: 1, lineHeight: 1.5 }}>{job.description}</p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#4f46e5' }}>{job.salaryRange}</span>
+                    <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-primary)' }}>{job.salaryRange}</span>
                     <span style={{ fontSize: '0.6875rem', color: 'var(--color-text-tertiary)' }}>{job.department}</span>
                   </div>
                 </div>
