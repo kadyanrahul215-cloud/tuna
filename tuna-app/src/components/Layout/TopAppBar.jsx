@@ -1,54 +1,182 @@
 import { useAuth } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
 
-export default function TopAppBar() {
+export default function TopAppBar({ onToggleSidebar, sidebarCollapsed }) {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
 
   return (
-    <motion.header 
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-6 h-16 bg-surface/70 backdrop-blur-3xl"
-      style={{ WebkitBackdropFilter: 'blur(24px)' }}
-    >
-      <div className="flex items-center gap-3">
-        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden cursor-pointer"
-          onClick={() => navigate('/dashboard')}
+    <header style={{
+      position: 'sticky',
+      top: 0,
+      zIndex: 50,
+      height: '64px',
+      backgroundColor: 'rgba(255, 255, 255, 0.85)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      borderBottom: '1px solid var(--color-border)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '0 1.5rem',
+    }}>
+      {/* Left: Logo + Toggle */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <button
+          onClick={onToggleSidebar}
+          aria-label="Toggle sidebar"
+          style={{
+            display: 'none',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '40px',
+            height: '40px',
+            borderRadius: '0.75rem',
+            border: 'none',
+            background: 'none',
+            cursor: 'pointer',
+            color: 'var(--color-text-secondary)',
+            transition: 'all 0.2s ease',
+          }}
+          className="sidebar-toggle-btn"
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = 'var(--color-surface-100)'
+            e.currentTarget.style.color = 'var(--color-text)'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = 'transparent'
+            e.currentTarget.style.color = 'var(--color-text-secondary)'
+          }}
         >
-          {user?.avatar_url ? (
-            <img src={user.avatar_url} alt="Profile" className="w-full h-full object-cover" />
-          ) : (
-            <span className="material-symbols-outlined text-on-primary-container text-lg">person</span>
-          )}
+          <span className="material-symbols-outlined" style={{ fontSize: '22px' }}>
+            {sidebarCollapsed ? 'menu' : 'menu_open'}
+          </span>
+        </button>
+
+        <div
+          onClick={() => navigate('/dashboard')}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            cursor: 'pointer',
+            textDecoration: 'none',
+          }}
+        >
+          <div style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: '0.625rem',
+            background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#fff',
+            fontWeight: 800,
+            fontSize: '0.875rem',
+            letterSpacing: '-0.02em',
+          }}>
+            T
+          </div>
+          <span style={{
+            fontWeight: 700,
+            fontSize: '1.125rem',
+            letterSpacing: '-0.02em',
+            color: 'var(--color-text)',
+          }}>
+            TUNA
+          </span>
         </div>
-        <span 
-          className="text-lg md:text-xl font-bold text-primary cursor-pointer"
-          style={{ fontFamily: 'var(--font-headline)' }}
-          onClick={() => navigate('/dashboard')}
-        >
-          TUNA Business
-        </span>
       </div>
-      
-      <div className="flex items-center gap-2 md:gap-4">
-        <button 
-          className="p-2 rounded-full hover:bg-surface-container-highest transition-colors text-on-surface-variant"
-          title="Notifications"
+
+      {/* Right: User actions */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <button
+          aria-label="Notifications"
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '0.75rem',
+            border: 'none',
+            background: 'none',
+            cursor: 'pointer',
+            color: 'var(--color-text-secondary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            transition: 'all 0.2s ease',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = 'var(--color-surface-100)'
+            e.currentTarget.style.color = 'var(--color-text)'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = 'transparent'
+            e.currentTarget.style.color = 'var(--color-text-secondary)'
+          }}
         >
-          <span className="material-symbols-outlined">notifications</span>
-          <span className="absolute top-2.5 right-[4.5rem] md:right-[5.5rem] w-2 h-2 bg-error rounded-full"></span>
+          <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>notifications</span>
+          <div style={{
+            position: 'absolute',
+            top: '8px',
+            right: '8px',
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            backgroundColor: '#ef4444',
+            border: '2px solid #fff',
+          }} />
         </button>
-        <button 
-          onClick={logout}
-          className="p-2 rounded-full hover:bg-surface-container-highest transition-colors text-on-surface-variant"
-          title="Logout"
+
+        <div
+          onClick={() => navigate('/profile')}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.625rem',
+            padding: '0.375rem 0.75rem 0.375rem 0.375rem',
+            borderRadius: '9999px',
+            cursor: 'pointer',
+            transition: 'background-color 0.2s ease',
+            border: '1px solid var(--color-border)',
+          }}
+          onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--color-surface-100)'}
+          onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
         >
-          <span className="material-symbols-outlined">logout</span>
-        </button>
+          <div style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#fff',
+            fontWeight: 700,
+            fontSize: '0.75rem',
+          }}>
+            {user?.full_name?.charAt(0)?.toUpperCase() || 'U'}
+          </div>
+          <span style={{
+            fontWeight: 600,
+            fontSize: '0.8125rem',
+            color: 'var(--color-text)',
+            maxWidth: '120px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}>
+            {user?.full_name?.split(' ')[0] || 'User'}
+          </span>
+        </div>
       </div>
-    </motion.header>
+
+      <style>{`
+        @media (min-width: 768px) {
+          .sidebar-toggle-btn { display: flex !important; }
+        }
+      `}</style>
+    </header>
   )
 }

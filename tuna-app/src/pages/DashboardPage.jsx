@@ -1,101 +1,227 @@
-import { motion } from 'framer-motion'
 import { useAuth } from '../contexts/AuthContext'
-import { useData } from '../hooks/useData'
+import { mockData } from '../lib/supabase'
 import AppLayout from '../components/Layout/AppLayout'
-import SearchBar from '../components/UI/SearchBar'
-import KPICard from '../components/UI/KPICard'
-import ActivityItem from '../components/UI/ActivityItem'
-import InsightCard from '../components/UI/InsightCard'
-import FAB from '../components/UI/FAB'
 
 export default function DashboardPage() {
   const { user } = useAuth()
-  const { kpiMetrics, activities } = useData()
 
   const getGreeting = () => {
-    const hour = new Date().getHours()
-    if (hour < 12) return 'Good Morning'
-    if (hour < 17) return 'Good Afternoon'
+    const h = new Date().getHours()
+    if (h < 12) return 'Good Morning'
+    if (h < 17) return 'Good Afternoon'
     return 'Good Evening'
+  }
+
+  const kpis = mockData.kpiMetrics
+  const activities = mockData.activities
+
+  const statusColor = {
+    Active: { bg: '#eef2ff', text: '#4f46e5' },
+    Urgent: { bg: '#fef2f2', text: '#ef4444' },
+    Review: { bg: '#f0fdf4', text: '#16a34a' },
+    Pending: { bg: '#faf5ff', text: '#9333ea' },
   }
 
   return (
     <AppLayout>
-      <div className="space-y-6 md:space-y-10">
-        {/* Sticky Search Bar */}
-        <div className="sticky top-20 z-30 pt-1 pb-2">
-          <SearchBar placeholder="Search orders, tickets, or ranking..." />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+
+        {/* Hero Greeting */}
+        <div style={{
+          background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #0ea5e9 100%)',
+          borderRadius: '1.25rem',
+          padding: '2rem 2rem',
+          color: '#fff',
+          position: 'relative',
+          overflow: 'hidden',
+          animation: 'slide-up 0.5s ease',
+        }}>
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <p style={{ fontSize: '0.875rem', fontWeight: 500, opacity: 0.85, marginBottom: '0.25rem' }}>
+              {getGreeting()}
+            </p>
+            <h1 style={{
+              fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
+              fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', marginBottom: '0.5rem',
+            }}>
+              {user?.full_name?.split(' ')[0] || 'User'} 👋
+            </h1>
+            <p style={{ fontSize: '0.9375rem', opacity: 0.85, maxWidth: '500px', lineHeight: 1.6 }}>
+              Your business ecosystem is performing at <strong>94% efficiency</strong> today. You have 3 urgent items requiring attention.
+            </p>
+          </div>
+          {/* Decorative circle */}
+          <div style={{
+            position: 'absolute', top: '-30px', right: '-30px', width: '180px', height: '180px',
+            borderRadius: '50%', background: 'rgba(255,255,255,0.08)',
+          }} />
+          <div style={{
+            position: 'absolute', bottom: '-40px', right: '60px', width: '120px', height: '120px',
+            borderRadius: '50%', background: 'rgba(255,255,255,0.05)',
+          }} />
         </div>
 
-        {/* Greeting Card */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-2xl p-6 md:p-8 text-on-primary"
-          style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%)' }}
-        >
-          <div className="relative z-10">
-            <motion.h1 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2"
-              style={{ fontFamily: 'var(--font-headline)' }}
+        {/* KPI Cards */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: '1rem',
+        }}>
+          {kpis.map((kpi, i) => (
+            <div
+              key={kpi.id}
+              style={{
+                backgroundColor: '#fff',
+                borderRadius: '1rem',
+                padding: '1.5rem',
+                border: '1px solid var(--color-border)',
+                transition: 'all 0.2s ease',
+                animation: `slide-up 0.4s ease ${i * 0.1}s both`,
+                cursor: 'pointer',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.06)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
             >
-              {getGreeting()}, {user?.full_name?.split(' ')[0] || 'Alex'}
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-on-primary-container/80 text-sm md:text-lg max-w-md"
-            >
-              Your business ecosystem is performing at 94% efficiency today. You have 3 urgent items requiring attention.
-            </motion.p>
-          </div>
-          <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 opacity-20 transform translate-x-10 -translate-y-10">
-            <span className="material-symbols-outlined filled" style={{ fontSize: '160px' }}>architecture</span>
-          </div>
-        </motion.section>
-
-        {/* KPI Grid */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-          {kpiMetrics.map((kpi, i) => (
-            <KPICard key={kpi.id} {...kpi} index={i} />
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <div style={{
+                  width: '42px', height: '42px', borderRadius: '0.75rem',
+                  backgroundColor: '#eef2ff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <span className="material-symbols-outlined filled" style={{ fontSize: '20px', color: '#4f46e5' }}>
+                    {kpi.icon}
+                  </span>
+                </div>
+                <span style={{
+                  fontSize: '0.75rem', fontWeight: 600,
+                  color: kpi.changeType === 'positive' ? '#16a34a' : '#94a3b8',
+                  backgroundColor: kpi.changeType === 'positive' ? '#f0fdf4' : '#f8fafc',
+                  padding: '0.25rem 0.625rem', borderRadius: '9999px',
+                }}>
+                  {kpi.change}
+                </span>
+              </div>
+              <p style={{ fontSize: '0.8125rem', fontWeight: 500, color: 'var(--color-text-secondary)', marginBottom: '0.25rem' }}>
+                {kpi.label}
+              </p>
+              <p style={{ fontSize: '1.75rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
+                {kpi.value}
+              </p>
+            </div>
           ))}
-        </section>
+        </div>
 
-        {/* Activity & Insight Bento Section */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
-          {/* Recent Activity Feed */}
-          <div className="lg:col-span-8 bg-surface-container-low rounded-2xl p-5 md:p-8">
-            <div className="flex justify-between items-center mb-5 md:mb-8">
-              <h2 className="text-xl md:text-2xl font-bold text-on-surface" style={{ fontFamily: 'var(--font-headline)' }}>
-                Recent Activity
-              </h2>
-              <button className="text-primary font-bold text-sm hover:underline cursor-pointer">View All</button>
+        {/* Activity + Insight Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gap: '1rem',
+        }} className="dashboard-grid">
+          {/* Recent Activity */}
+          <div style={{
+            backgroundColor: '#fff',
+            borderRadius: '1rem',
+            border: '1px solid var(--color-border)',
+            padding: '1.5rem',
+            animation: 'slide-up 0.5s ease 0.3s both',
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+              <h2 style={{ fontSize: '1.125rem', fontWeight: 700 }}>Recent Activity</h2>
+              <button style={{
+                background: 'none', border: 'none', color: '#4f46e5', fontWeight: 600,
+                fontSize: '0.8125rem', cursor: 'pointer',
+              }}>View All</button>
             </div>
-            <div className="space-y-3 md:space-y-4">
-              {activities.map((activity, i) => (
-                <ActivityItem key={activity.id} {...activity} index={i} />
-              ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {activities.map((act, i) => {
+                const sc = statusColor[act.status] || { bg: '#f8fafc', text: '#64748b' }
+                return (
+                  <div
+                    key={act.id}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: '1rem',
+                      padding: '0.875rem', borderRadius: '0.75rem',
+                      transition: 'background-color 0.2s ease',
+                      cursor: 'pointer',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--color-surface-50)'}
+                    onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
+                  >
+                    <div style={{
+                      width: '42px', height: '42px', borderRadius: '0.75rem',
+                      backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      flexShrink: 0,
+                    }}>
+                      <span className="material-symbols-outlined" style={{ fontSize: '20px', color: 'var(--color-text-secondary)' }}>
+                        {act.icon}
+                      </span>
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <p style={{ fontWeight: 600, fontSize: '0.875rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {act.title}
+                      </p>
+                      <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {act.subtitle}
+                      </p>
+                    </div>
+                    <span style={{
+                      fontSize: '0.6875rem', fontWeight: 600, padding: '0.25rem 0.75rem',
+                      borderRadius: '9999px', backgroundColor: sc.bg, color: sc.text,
+                      whiteSpace: 'nowrap', flexShrink: 0,
+                    }}>
+                      {act.status}
+                    </span>
+                  </div>
+                )
+              })}
             </div>
           </div>
 
-          {/* Insight Side Card */}
-          <div className="lg:col-span-4">
-            <InsightCard
-              icon="insights"
-              title="Architectural Insight"
-              description="Based on current procurement patterns, you could save up to 14% by consolidating vendor orders for the next quarter."
-              buttonText="Explore Strategy"
-            />
+          {/* Insight Card */}
+          <div style={{
+            backgroundColor: '#fff',
+            borderRadius: '1rem',
+            border: '1px solid var(--color-border)',
+            padding: '1.5rem',
+            animation: 'slide-up 0.5s ease 0.4s both',
+          }}>
+            <div style={{
+              width: '42px', height: '42px', borderRadius: '0.75rem',
+              background: 'linear-gradient(135deg, #f59e0b, #f97316)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              marginBottom: '1rem',
+            }}>
+              <span className="material-symbols-outlined filled" style={{ fontSize: '20px', color: '#fff' }}>insights</span>
+            </div>
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.5rem' }}>Architectural Insight</h3>
+            <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+              Based on current procurement patterns, you could save up to <strong>14%</strong> by consolidating vendor orders for the next quarter.
+            </p>
+            <button style={{
+              padding: '0.625rem 1.25rem', borderRadius: '0.75rem', border: 'none',
+              background: 'linear-gradient(135deg, #4f46e5, #7c3aed)', color: '#fff',
+              fontWeight: 600, fontSize: '0.8125rem', cursor: 'pointer',
+              transition: 'transform 0.2s ease',
+            }}
+              onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.03)'}
+              onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              Explore Strategy
+            </button>
           </div>
-        </section>
+        </div>
       </div>
 
-      <FAB icon="add" />
+      <style>{`
+        @media (min-width: 768px) {
+          .dashboard-grid { grid-template-columns: 2fr 1fr !important; }
+        }
+      `}</style>
     </AppLayout>
   )
 }

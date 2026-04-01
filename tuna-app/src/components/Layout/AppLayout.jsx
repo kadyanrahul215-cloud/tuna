@@ -1,16 +1,37 @@
-import TopAppBar from './TopAppBar'
-import BottomNavBar from './BottomNavBar'
+import { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
+import TopAppBar from './TopAppBar'
 
 export default function AppLayout({ children }) {
+  const [collapsed, setCollapsed] = useState(() => {
+    const saved = localStorage.getItem('tuna_sidebar_collapsed')
+    return saved === 'true'
+  })
+
+  const toggleSidebar = () => {
+    setCollapsed(prev => {
+      localStorage.setItem('tuna_sidebar_collapsed', String(!prev))
+      return !prev
+    })
+  }
+
   return (
-    <div className="min-h-screen bg-background">
-      <TopAppBar />
-      <Sidebar />
-      <main className="pt-20 pb-28 md:pb-8 px-4 md:px-8 md:ml-64 lg:ml-72 max-w-6xl mx-auto md:mx-0">
-        {children}
-      </main>
-      <BottomNavBar />
+    <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}>
+      <TopAppBar onToggleSidebar={toggleSidebar} sidebarCollapsed={collapsed} />
+      <div style={{ display: 'flex', flex: 1 }}>
+        <Sidebar collapsed={collapsed} onToggle={toggleSidebar} />
+        <main style={{
+          flex: 1,
+          minWidth: 0,
+          padding: '1.5rem',
+          maxWidth: '1200px',
+          width: '100%',
+          margin: '0 auto',
+          animation: 'fade-in 0.3s ease',
+        }}>
+          {children}
+        </main>
+      </div>
     </div>
   )
 }

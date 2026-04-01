@@ -1,199 +1,134 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { useData } from '../hooks/useData'
+import { mockData } from '../lib/supabase'
 import AppLayout from '../components/Layout/AppLayout'
 
 export default function HRPage() {
-  const { interviews, jobPostings } = useData()
-  const [activeTab, setActiveTab] = useState('All Roles')
+  const { interviews, jobPostings } = mockData
 
-  const tabs = ['All Roles (14)', 'Engineering (8)', 'Design (4)']
+  const typeColor = {
+    'Remote': { bg: '#f0fdf4', text: '#16a34a' },
+    'On-site': { bg: '#eef2ff', text: '#4f46e5' },
+    'Hybrid': { bg: '#faf5ff', text: '#9333ea' },
+  }
 
   return (
     <AppLayout>
-      <div className="space-y-8 md:space-y-12">
-        {/* Welcome Hero */}
-        <motion.section
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-2"
-        >
-          <span className="text-xs tracking-widest uppercase text-primary font-medium" style={{ fontFamily: 'var(--font-label)' }}>
-            HR Performance Suite
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-on-surface" style={{ fontFamily: 'var(--font-headline)' }}>
-            Precision Hiring.
-          </h1>
-          <p className="text-on-surface-variant max-w-xl">
-            Architecting your future workforce with surgical precision and intelligent interview workflows.
-          </p>
-        </motion.section>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', animation: 'fade-in 0.4s ease' }}>
+        <div>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.25rem' }}>HR Portal</h1>
+          <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>Manage hiring, interviews, and team growth</p>
+        </div>
 
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
-          {/* Interview Schedule Tracker */}
-          <div className="md:col-span-8 bg-surface-container-low rounded-2xl p-5 md:p-8 space-y-4 md:space-y-6">
-            <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-3">
-              <div className="space-y-1">
-                <h2 className="text-xl md:text-2xl font-semibold text-on-surface" style={{ fontFamily: 'var(--font-headline)' }}>
-                  Interview Schedule
-                </h2>
-                <p className="text-sm text-on-surface-variant font-medium">Prioritizing high-intent candidates for Q3</p>
-              </div>
-              <button className="bg-surface-container-highest text-primary font-semibold py-2 px-5 md:px-6 rounded-full hover:bg-primary hover:text-white transition-all cursor-pointer text-sm self-start sm:self-auto">
-                View Calendar
-              </button>
-            </div>
-            <div className="space-y-3 md:space-y-4">
-              {interviews.map((interview, i) => (
-                <motion.div
-                  key={interview.id}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: i * 0.1 }}
-                  className={`flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-surface-container-lowest rounded-2xl hover:bg-surface transition-colors cursor-pointer group ${
-                    i === interviews.length - 1 ? 'opacity-60' : ''
-                  }`}
-                >
-                  <div className="flex flex-col items-center justify-center min-w-[50px] md:min-w-[64px] border-r border-surface-container pr-3 md:pr-6">
-                    <span className="font-bold text-lg md:text-xl text-primary" style={{ fontFamily: 'var(--font-headline)' }}>
-                      {interview.day}
-                    </span>
-                    <span className="text-[10px] uppercase tracking-widest font-bold opacity-60">{interview.month}</span>
-                  </div>
-                  <div className="flex-grow min-w-0">
-                    <h4 className="font-semibold text-base md:text-lg truncate" style={{ fontFamily: 'var(--font-headline)' }}>
-                      {interview.name}
-                    </h4>
-                    <p className="text-sm text-on-surface-variant truncate">{interview.position} • {interview.round}</p>
-                  </div>
-                  <div className="text-right hidden md:block flex-shrink-0">
-                    <p className="font-bold text-primary" style={{ fontFamily: 'var(--font-headline)' }}>{interview.time}</p>
-                    <span className="text-xs text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full inline-block">
-                      {interview.location}
-                    </span>
-                  </div>
-                  <span className="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform hidden sm:block">
-                    chevron_right
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+        {/* Upcoming Interviews */}
+        <div style={{
+          backgroundColor: '#fff', borderRadius: '1.25rem',
+          border: '1px solid var(--color-border)', padding: '1.5rem',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+            <h2 style={{ fontSize: '1.0625rem', fontWeight: 700 }}>Upcoming Interviews</h2>
+            <button style={{
+              padding: '0.5rem 1rem', borderRadius: '0.625rem', border: 'none',
+              background: 'linear-gradient(135deg, #4f46e5, #7c3aed)', color: '#fff',
+              fontWeight: 600, fontSize: '0.8125rem', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', gap: '0.375rem',
+            }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>add</span>
+              Schedule
+            </button>
           </div>
-
-          {/* Notifications & KPI */}
-          <div className="md:col-span-4 flex flex-col gap-4 md:gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="bg-primary p-6 md:p-8 rounded-2xl text-on-primary space-y-4 md:space-y-6 flex-grow flex flex-col justify-between"
-            >
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'var(--font-headline)' }}>HR Hub</h3>
-                <p className="text-on-primary/70 text-sm mt-2">Critical updates required for new hires</p>
-              </div>
-              <div className="space-y-3 md:space-y-4">
-                <div className="bg-white/10 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-white/5">
-                  <div className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-sm mt-1">emergency</span>
-                    <div>
-                      <p className="font-semibold text-sm">Background Checks</p>
-                      <p className="text-xs opacity-70">3 candidates awaiting verification</p>
-                    </div>
-                  </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {interviews.map(interview => (
+              <div key={interview.id} style={{
+                display: 'flex', alignItems: 'center', gap: '1rem',
+                padding: '1rem', borderRadius: '0.75rem', border: '1px solid var(--color-border)',
+                transition: 'all 0.2s ease', cursor: 'pointer',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#4f46e5'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--color-border)'; e.currentTarget.style.boxShadow = 'none' }}
+              >
+                {/* Date Badge */}
+                <div style={{
+                  width: '52px', height: '56px', borderRadius: '0.75rem',
+                  background: 'linear-gradient(135deg, #eef2ff, #e0e7ff)',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#4f46e5', lineHeight: 1 }}>{interview.day}</span>
+                  <span style={{ fontSize: '0.625rem', fontWeight: 600, color: '#818cf8', textTransform: 'uppercase' }}>{interview.month}</span>
                 </div>
-                <div className="bg-white/10 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-white/5">
-                  <div className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-sm mt-1">verified</span>
-                    <div>
-                      <p className="font-semibold text-sm">Offer Letters</p>
-                      <p className="text-xs opacity-70">2 contracts signed today</p>
-                    </div>
-                  </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <p style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: '0.125rem' }}>{interview.name}</p>
+                  <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{interview.position} • {interview.round}</p>
+                </div>
+                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                  <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-text)' }}>{interview.time}</p>
+                  <p style={{ fontSize: '0.6875rem', color: 'var(--color-text-tertiary)' }}>{interview.location}</p>
                 </div>
               </div>
-              <button className="w-full bg-white text-primary font-bold py-3 rounded-full hover:bg-on-primary-container transition-all cursor-pointer">
-                Review Pipeline
-              </button>
-            </motion.div>
-
-            {/* Quick KPI */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-              className="bg-surface-container-highest p-6 md:p-8 rounded-2xl"
-            >
-              <span className="text-[10px] tracking-widest text-outline uppercase font-bold" style={{ fontFamily: 'var(--font-label)' }}>
-                Success Rate
-              </span>
-              <div className="flex items-baseline gap-2 mt-1">
-                <span className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'var(--font-headline)' }}>92%</span>
-                <span className="text-green-600 font-bold text-sm">+4.5%</span>
-              </div>
-              <p className="text-xs text-on-surface-variant mt-2">Offer acceptance rate this quarter.</p>
-            </motion.div>
+            ))}
           </div>
         </div>
 
-        {/* Open Positions Section */}
-        <section className="space-y-6 md:space-y-8">
-          <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-3 border-b border-surface-container pb-4">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-headline)' }}>
-              Active Recruitment
-            </h2>
-            <div className="flex gap-3 md:gap-4">
-              {tabs.map((tab, i) => (
-                <span
-                  key={tab}
-                  className={`text-sm cursor-pointer ${i === 0 ? 'text-primary font-bold' : 'text-on-surface-variant font-medium hover:text-primary'} transition-colors`}
+        {/* Job Postings */}
+        <div style={{
+          backgroundColor: '#fff', borderRadius: '1.25rem',
+          border: '1px solid var(--color-border)', padding: '1.5rem',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+            <h2 style={{ fontSize: '1.0625rem', fontWeight: 700 }}>Active Job Postings</h2>
+            <button style={{
+              padding: '0.5rem 1rem', borderRadius: '0.625rem', border: 'none',
+              background: 'linear-gradient(135deg, #4f46e5, #7c3aed)', color: '#fff',
+              fontWeight: 600, fontSize: '0.8125rem', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', gap: '0.375rem',
+            }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>add</span>
+              Post Job
+            </button>
+          </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '1rem',
+          }}>
+            {jobPostings.map(job => {
+              const tc = typeColor[job.type] || { bg: '#f8fafc', text: '#64748b' }
+              return (
+                <div key={job.id} style={{
+                  padding: '1.5rem', borderRadius: '1rem', border: '1px solid var(--color-border)',
+                  transition: 'all 0.2s ease', cursor: 'pointer', display: 'flex', flexDirection: 'column',
+                }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.transform = 'translateY(-2px)'
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.04)'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.currentTarget.style.boxShadow = 'none'
+                  }}
                 >
-                  {tab}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {jobPostings.map((job, i) => (
-              <motion.div
-                key={job.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.2 + i * 0.1 }}
-                whileHover={{ y: -4 }}
-                className="bg-surface-container rounded-2xl p-5 md:p-6 flex flex-col justify-between h-64 md:h-72 group hover:bg-surface-container-high transition-all duration-300"
-              >
-                <div>
-                  <div className="flex justify-between items-start">
-                    <span className="bg-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-primary">
-                      {job.type}
-                    </span>
-                    <span className="material-symbols-outlined text-outline-variant cursor-pointer hover:text-primary transition-colors">
-                      bookmark
-                    </span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                    <div style={{
+                      width: '42px', height: '42px', borderRadius: '0.75rem',
+                      backgroundColor: '#eef2ff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      <span className="material-symbols-outlined" style={{ fontSize: '20px', color: '#4f46e5' }}>work</span>
+                    </div>
+                    <span style={{
+                      fontSize: '0.6875rem', fontWeight: 600, padding: '0.25rem 0.625rem',
+                      borderRadius: '9999px', backgroundColor: tc.bg, color: tc.text,
+                    }}>{job.type}</span>
                   </div>
-                  <h3 className="text-lg md:text-xl font-bold mt-4 md:mt-6 group-hover:text-primary transition-colors" style={{ fontFamily: 'var(--font-headline)' }}>
-                    {job.title}
-                  </h3>
-                  <p className="text-sm text-on-surface-variant mt-2 line-clamp-2">{job.description}</p>
+                  <h3 style={{ fontSize: '0.9375rem', fontWeight: 700, marginBottom: '0.375rem' }}>{job.title}</h3>
+                  <p style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)', marginBottom: '0.75rem', flex: 1, lineHeight: 1.5 }}>{job.description}</p>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#4f46e5' }}>{job.salaryRange}</span>
+                    <span style={{ fontSize: '0.6875rem', color: 'var(--color-text-tertiary)' }}>{job.department}</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-bold text-on-surface">{job.salaryRange}</span>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-primary text-on-primary px-4 md:px-5 py-2 rounded-full font-bold text-sm cursor-pointer"
-                  >
-                    Apply
-                  </motion.button>
-                </div>
-              </motion.div>
-            ))}
+              )
+            })}
           </div>
-        </section>
+        </div>
       </div>
     </AppLayout>
   )
