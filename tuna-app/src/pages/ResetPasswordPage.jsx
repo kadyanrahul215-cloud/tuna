@@ -46,7 +46,7 @@ export default function ResetPasswordPage() {
     <div style={{
       minHeight: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: '2rem 1rem',
-      background: 'linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0f9ff 100%)',
+      backgroundColor: 'var(--color-bg)',
     }}>
       <div style={{ width: '100%', maxWidth: '440px', animation: 'scale-in 0.4s ease' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
@@ -68,8 +68,8 @@ export default function ResetPasswordPage() {
         </div>
 
         <div style={{
-          backgroundColor: '#fff', borderRadius: '1.25rem', padding: '2rem',
-          boxShadow: '0 20px 50px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03)',
+          backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem', padding: '2rem',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.06), 0 0 0 1px var(--color-border)',
         }}>
           {success ? (
             <div style={{ textAlign: 'center', padding: '1rem 0' }}>

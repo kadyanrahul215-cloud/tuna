@@ -7,9 +7,14 @@ export default function DashboardPage() {
 
   const getGreeting = () => {
     const h = new Date().getHours()
-    if (h < 12) return 'Good Morning'
-    if (h < 17) return 'Good Afternoon'
-    return 'Good Evening'
+    if (h < 12) return 'Good morning'
+    if (h < 17) return 'Good afternoon'
+    return 'Good evening'
+  }
+
+  const getFormattedDate = () => {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    return new Date().toLocaleDateString('en-US', options)
   }
 
   const kpis = mockData.kpiMetrics
@@ -28,36 +33,38 @@ export default function DashboardPage() {
 
         {/* Hero Greeting */}
         <div style={{
-          background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #0ea5e9 100%)',
+          background: 'linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%)',
           borderRadius: '1.25rem',
-          padding: '2rem 2rem',
+          padding: '2.5rem 2.5rem',
           color: '#fff',
           position: 'relative',
           overflow: 'hidden',
-          animation: 'slide-up 0.5s ease',
+          animation: 'fade-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)',
+          boxShadow: '0 20px 40px rgba(26, 86, 219, 0.15)',
         }}>
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <p style={{ fontSize: '0.875rem', fontWeight: 500, opacity: 0.85, marginBottom: '0.25rem' }}>
-              {getGreeting()}
+            <p style={{ fontSize: '0.875rem', fontWeight: 600, opacity: 0.9, marginBottom: '0.375rem', display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>calendar_month</span>
+              {getFormattedDate()}
             </p>
             <h1 style={{
-              fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
-              fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', marginBottom: '0.5rem',
+              fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+              fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', marginBottom: '0.75rem',
             }}>
-              {user?.full_name?.split(' ')[0] || 'User'} 👋
+              {getGreeting()}, {user?.full_name?.split(' ')[0] || 'User'}! 👋
             </h1>
-            <p style={{ fontSize: '0.9375rem', opacity: 0.85, maxWidth: '500px', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '1rem', opacity: 0.85, maxWidth: '500px', lineHeight: 1.6 }}>
               Your business ecosystem is performing at <strong>94% efficiency</strong> today. You have 3 urgent items requiring attention.
             </p>
           </div>
-          {/* Decorative circle */}
+          {/* Decorative shapes */}
           <div style={{
-            position: 'absolute', top: '-30px', right: '-30px', width: '180px', height: '180px',
-            borderRadius: '50%', background: 'rgba(255,255,255,0.08)',
+            position: 'absolute', top: '-10%', right: '-5%', width: '300px', height: '300px',
+            borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)',
           }} />
           <div style={{
-            position: 'absolute', bottom: '-40px', right: '60px', width: '120px', height: '120px',
-            borderRadius: '50%', background: 'rgba(255,255,255,0.05)',
+            position: 'absolute', bottom: '-20%', right: '15%', width: '200px', height: '200px',
+            borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
           }} />
         </div>
 
@@ -91,9 +98,9 @@ export default function DashboardPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <div style={{
                   width: '42px', height: '42px', borderRadius: '0.75rem',
-                  backgroundColor: 'rgba(79, 70, 229, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: 'var(--color-primary-50)', display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
-                  <span className="material-symbols-outlined filled" style={{ fontSize: '20px', color: '#4f46e5' }}>
+                  <span className="material-symbols-outlined filled" style={{ fontSize: '20px', color: 'var(--color-primary)' }}>
                     {kpi.icon}
                   </span>
                 </div>

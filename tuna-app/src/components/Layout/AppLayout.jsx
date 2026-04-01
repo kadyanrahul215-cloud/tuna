@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import TopAppBar from './TopAppBar'
+import BottomNav from './BottomNav'
 
 export default function AppLayout({ children }) {
   const [collapsed, setCollapsed] = useState(() => {
@@ -24,6 +25,7 @@ export default function AppLayout({ children }) {
           flex: 1,
           minWidth: 0,
           padding: '1.5rem',
+          paddingBottom: '5rem', /* extra padding for mobile bottom nav */
           maxWidth: '1200px',
           width: '100%',
           margin: '0 auto',
@@ -32,6 +34,7 @@ export default function AppLayout({ children }) {
           {children}
         </main>
       </div>
+      <BottomNav />
     </div>
   )
 }

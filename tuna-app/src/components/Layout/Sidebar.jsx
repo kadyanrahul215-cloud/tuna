@@ -65,41 +65,10 @@ export default function Sidebar({ collapsed, onToggle }) {
     transition: 'opacity 0.3s ease',
   }
 
+  if (isMobile) return null
+
   return (
     <>
-      {/* Mobile overlay */}
-      {isMobile && <div style={overlayStyles} onClick={() => setMobileOpen(false)} />}
-
-      {/* Mobile toggle button */}
-      {isMobile && (
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-          style={{
-            position: 'fixed',
-            bottom: '1.5rem',
-            right: '1.5rem',
-            zIndex: 998,
-            width: '56px',
-            height: '56px',
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
-            color: '#fff',
-            border: 'none',
-            boxShadow: '0 8px 25px rgba(79, 70, 229, 0.35)',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'transform 0.2s ease',
-          }}
-        >
-          <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>
-            {mobileOpen ? 'close' : 'menu'}
-          </span>
-        </button>
-      )}
-
       <aside style={sidebarStyles} className="hide-scrollbar">
         {/* User Info */}
         <div style={{

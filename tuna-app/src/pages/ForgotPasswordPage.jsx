@@ -37,7 +37,7 @@ export default function ForgotPasswordPage() {
     <div style={{
       minHeight: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: '2rem 1rem',
-      background: 'linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0f9ff 100%)',
+      backgroundColor: 'var(--color-bg)',
     }}>
       <div style={{ width: '100%', maxWidth: '440px', animation: 'scale-in 0.4s ease' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
@@ -61,8 +61,8 @@ export default function ForgotPasswordPage() {
         </div>
 
         <div style={{
-          backgroundColor: '#fff', borderRadius: '1.25rem', padding: '2rem',
-          boxShadow: '0 20px 50px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03)',
+          backgroundColor: 'var(--color-surface)', borderRadius: '1.25rem', padding: '2rem',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.06), 0 0 0 1px var(--color-border)',
         }}>
           {sent ? (
             <div style={{ textAlign: 'center' }}>
@@ -81,7 +81,7 @@ export default function ForgotPasswordPage() {
                 onClick={() => setSent(false)}
                 style={{
                   padding: '0.75rem 1.5rem', borderRadius: '0.75rem',
-                  border: '1.5px solid var(--color-border)', backgroundColor: '#fff',
+                  border: '1.5px solid var(--color-border)', backgroundColor: 'var(--color-surface)',
                   fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer', color: 'var(--color-text)',
                   transition: 'all 0.2s ease',
                 }}

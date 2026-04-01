@@ -70,21 +70,21 @@ export default function LoginPage() {
   }
 
   const roles = [
-    { id: 'developer', label: 'Developer', sub: 'API & Infrastructure', icon: 'terminal', color: '#4f46e5', bg: '#eef2ff' },
-    { id: 'staff', label: 'Staff', sub: 'Operations & Tasks', icon: 'badge', color: '#0ea5e9', bg: '#f0f9ff' },
-    { id: 'management', label: 'Management', sub: 'Insights & Strategy', icon: 'analytics', color: '#f59e0b', bg: '#fffbeb' },
-    { id: 'customer', label: 'Customer', sub: 'Account & Services', icon: 'person', color: '#10b981', bg: '#ecfdf5' },
+    { id: 'developer', label: 'Developer', sub: 'API & INFRASTRUCTURE', icon: 'terminal', color: 'var(--color-primary)', bg: 'var(--color-primary-50)' },
+    { id: 'staff', label: 'Staff', sub: 'OPERATIONS & TASKS', icon: 'badge', color: 'var(--color-primary)', bg: 'var(--color-primary-50)' },
+    { id: 'management', label: 'Management', sub: 'INSIGHTS & STRATEGY', icon: 'analytics', color: '#9a3412', bg: '#ffedd5' },
+    { id: 'customer', label: 'Customer', sub: 'ACCOUNT & SERVICES', icon: 'person', color: '#64748b', bg: '#f1f5f9' },
   ]
 
   const inputBase = (hasError) => ({
     width: '100%',
     padding: '0.8125rem 1rem 0.8125rem 2.75rem',
     borderRadius: '0.875rem',
-    border: `1.5px solid ${hasError ? '#ef4444' : '#e2e8f0'}`,
+    border: `1.5px solid ${hasError ? 'var(--color-error)' : 'var(--color-border)'}`,
     fontSize: '0.875rem',
-    backgroundColor: '#f8fafc',
+    backgroundColor: 'var(--color-surface-50)',
     transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-    color: '#0f172a',
+    color: 'var(--color-text)',
     fontFamily: 'inherit',
     outline: 'none',
   })
@@ -98,7 +98,7 @@ export default function LoginPage() {
     <div style={{
       minHeight: '100dvh',
       display: 'flex',
-      background: '#f8fafc',
+      backgroundColor: 'var(--color-bg)',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
     }}>
 
@@ -108,39 +108,29 @@ export default function LoginPage() {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        padding: 'clamp(2rem, 4vw, 4rem)',
-        maxWidth: '600px',
-        animation: 'slide-right 0.6s ease',
+        padding: 'clamp(2rem, 5vw, 6rem)',
+        maxWidth: '680px',
+        animation: 'fade-in 0.6s ease',
       }} className="auth-left">
         {/* Logo + Title */}
         <div style={{ marginBottom: '2.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '1.5rem' }}>
-            <div style={{
-              width: '44px', height: '44px', borderRadius: '0.875rem',
-              background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#fff', fontWeight: 800, fontSize: '1.125rem',
-              boxShadow: '0 8px 20px rgba(79, 70, 229, 0.25)',
-            }}>T</div>
-          </div>
           <h1 style={{
-            fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
+            fontSize: 'clamp(2rem, 4vw, 3.25rem)',
             fontWeight: 800,
-            letterSpacing: '-0.03em',
+            letterSpacing: '-0.04em',
             lineHeight: 1.1,
-            marginBottom: '0.75rem',
-            background: 'linear-gradient(135deg, #1e293b 0%, #4f46e5 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+            marginBottom: '0.875rem',
+            color: 'var(--color-primary)',
           }}>
             TUNA Business
           </h1>
           <p style={{
-            fontSize: '1.0625rem',
-            color: '#64748b',
-            lineHeight: 1.6,
-            maxWidth: '380px',
+            fontSize: '1.125rem',
+            color: 'var(--color-text)',
+            fontWeight: 500,
+            lineHeight: 1.5,
+            maxWidth: '420px',
+            letterSpacing: '-0.01em',
           }}>
             Seamless architectural intelligence for the modern enterprise ecosystem.
           </p>
@@ -149,48 +139,44 @@ export default function LoginPage() {
         {/* Hero Image */}
         <div style={{
           position: 'relative',
-          borderRadius: '1.25rem',
+          borderRadius: '2rem',
           overflow: 'hidden',
-          aspectRatio: '16/10',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)',
-          marginBottom: '1.5rem',
+          width: '100%',
+          maxWidth: '480px',
+          aspectRatio: '16/9',
+          boxShadow: '0 25px 50px rgba(0,0,0,0.12)',
+          marginBottom: '2rem',
+          transform: 'translateZ(0)',
         }}>
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
             alt="Modern office"
             style={{
               width: '100%', height: '100%', objectFit: 'cover',
-              transition: 'transform 6s ease',
             }}
-            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
-            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
           />
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(135deg, rgba(79,70,229,0.15) 0%, transparent 60%)',
-          }} />
+          <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(15, 74, 171, 0.1)' }} />
         </div>
 
         {/* Enterprise badge */}
         <div style={{
-          display: 'flex', alignItems: 'center', gap: '0.75rem',
-          padding: '0.875rem 1.25rem',
-          borderRadius: '1rem',
-          backgroundColor: '#fff',
-          border: '1px solid #e2e8f0',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-          maxWidth: 'fit-content',
+          display: 'flex', alignItems: 'center', gap: '0.875rem',
+          padding: '1rem 1.25rem',
+          borderRadius: '0.5rem',
+          backgroundColor: 'var(--color-surface)',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.03)',
+          maxWidth: '400px',
         }}>
           <div style={{
-            width: '38px', height: '38px', borderRadius: '50%',
-            background: 'linear-gradient(135deg, #10b981, #059669)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            width: '32px', height: '32px', borderRadius: '50%',
+            backgroundColor: 'var(--color-primary)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
           }}>
             <span className="material-symbols-outlined filled" style={{ fontSize: '18px', color: '#fff' }}>verified</span>
           </div>
           <div>
-            <p style={{ fontWeight: 700, fontSize: '0.8125rem', color: '#0f172a' }}>Enterprise Security</p>
-            <p style={{ fontSize: '0.6875rem', color: '#94a3b8' }}>Role-based access control with biometric support.</p>
+            <p style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--color-text)', marginBottom: '2px' }}>Enterprise Security</p>
+            <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>Role-based access control with biometric support.</p>
           </div>
         </div>
       </div>
@@ -207,23 +193,23 @@ export default function LoginPage() {
           key={formKey}
           style={{
             width: '100%',
-            maxWidth: '480px',
-            backgroundColor: '#fff',
-            borderRadius: '1.5rem',
-            padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-            boxShadow: '0 25px 60px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03)',
-            animation: 'scale-in 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+            maxWidth: '440px',
+            backgroundColor: 'var(--color-surface)',
+            borderRadius: '1.75rem',
+            padding: '2.5rem',
+            boxShadow: '0 30px 60px rgba(0,0,0,0.04), 0 0 0 1px var(--color-border)',
+            animation: 'scale-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)',
           }}
         >
           {/* Header */}
           <div style={{ marginBottom: '1.75rem' }}>
             <h2 style={{
               fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.02em',
-              marginBottom: '0.375rem', color: '#0f172a',
+              marginBottom: '0.375rem', color: 'var(--color-text)',
             }}>
               {isRegister ? 'Create Workspace' : 'Select Your Portal'}
             </h2>
-            <p style={{ fontSize: '0.875rem', color: '#64748b' }}>
+            <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
               {isRegister
                 ? 'Set up your enterprise account and choose your role.'
                 : 'Choose your designated workspace to proceed.'}
@@ -250,7 +236,7 @@ export default function LoginPage() {
             {/* Name (register only) */}
             {isRegister && (
               <div style={{ animation: 'slide-down 0.3s ease' }}>
-                <label style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 700, color: '#64748b', marginBottom: '0.375rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <label style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 700, color: 'var(--color-text-secondary)', marginBottom: '0.375rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   Full Name
                 </label>
                 <div style={{ position: 'relative' }}>
@@ -263,13 +249,13 @@ export default function LoginPage() {
                     autoComplete="name"
                   />
                 </div>
-                {errors.fullName && <p style={{ marginTop: '0.25rem', fontSize: '0.6875rem', color: '#ef4444', fontWeight: 500 }}>{errors.fullName}</p>}
+                {errors.fullName && <p style={{ marginTop: '0.25rem', fontSize: '0.6875rem', color: 'var(--color-error)', fontWeight: 500 }}>{errors.fullName}</p>}
               </div>
             )}
 
             {/* Email */}
             <div>
-              <label style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 700, color: '#64748b', marginBottom: '0.375rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              <label style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 700, color: 'var(--color-text-secondary)', marginBottom: '0.375rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 Corporate Email
               </label>
               <div style={{ position: 'relative' }}>
@@ -282,7 +268,7 @@ export default function LoginPage() {
                   autoComplete="email"
                 />
               </div>
-              {errors.email && <p style={{ marginTop: '0.25rem', fontSize: '0.6875rem', color: '#ef4444', fontWeight: 500 }}>{errors.email}</p>}
+              {errors.email && <p style={{ marginTop: '0.25rem', fontSize: '0.6875rem', color: 'var(--color-error)', fontWeight: 500 }}>{errors.email}</p>}
             </div>
 
             {/* Password */}
@@ -353,53 +339,49 @@ export default function LoginPage() {
                       type="button"
                       onClick={() => setSelectedRole(role.id)}
                       style={{
-                        display: 'flex', alignItems: 'center', gap: '0.75rem',
-                        padding: '0.875rem 0.875rem',
-                        borderRadius: '0.875rem',
-                        border: `1.5px solid ${active ? role.color : '#e2e8f0'}`,
-                        backgroundColor: active ? role.bg : '#fff',
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem',
+                        padding: '1.25rem 0.5rem',
+                        border: '1px solid var(--color-border)',
+                        borderLeftWidth: '4px',
+                        borderLeftColor: role.color,
+                        backgroundColor: active ? 'var(--color-surface-50)' : 'var(--color-surface)',
                         cursor: 'pointer',
-                        textAlign: 'left',
-                        transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-                        transform: active ? 'scale(1.01)' : 'scale(1)',
-                        boxShadow: active ? `0 4px 12px ${role.color}20` : 'none',
+                        textAlign: 'center',
+                        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                        transform: active ? 'translateY(-2px)' : 'translateY(0)',
+                        boxShadow: active ? `0 8px 15px ${role.color}15` : 'none',
                       }}
                       onMouseEnter={e => {
                         if (!active) {
-                          e.currentTarget.style.borderColor = role.color + '60'
-                          e.currentTarget.style.backgroundColor = role.bg
+                          e.currentTarget.style.backgroundColor = 'var(--color-surface-50)'
                         }
                       }}
                       onMouseLeave={e => {
                         if (!active) {
-                          e.currentTarget.style.borderColor = '#e2e8f0'
-                          e.currentTarget.style.backgroundColor = '#fff'
+                          e.currentTarget.style.backgroundColor = 'var(--color-surface)'
                         }
                       }}
                     >
                       <div style={{
-                        width: '36px', height: '36px', borderRadius: '0.625rem',
-                        backgroundColor: active ? role.color + '18' : '#f1f5f9',
+                        width: '40px', height: '40px', borderRadius: '0.5rem',
+                        backgroundColor: role.bg,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        transition: 'all 0.25s ease', flexShrink: 0,
+                        transition: 'all 0.2s ease', flexShrink: 0,
                       }}>
                         <span className="material-symbols-outlined filled" style={{
-                          fontSize: '18px',
-                          color: active ? role.color : '#94a3b8',
-                          transition: 'color 0.25s ease',
+                          fontSize: '20px',
+                          color: role.color,
                         }}>{role.icon}</span>
                       </div>
-                      <div style={{ minWidth: 0 }}>
+                      <div style={{ minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
                         <p style={{
-                          fontSize: '0.8125rem', fontWeight: 700,
-                          color: active ? '#0f172a' : '#475569',
-                          transition: 'color 0.2s',
+                          fontSize: '0.875rem', fontWeight: 700,
+                          color: 'var(--color-text)',
                         }}>{role.label}</p>
                         <p style={{
                           fontSize: '0.5625rem', fontWeight: 600,
-                          color: '#94a3b8',
+                          color: 'var(--color-text-tertiary)',
                           textTransform: 'uppercase', letterSpacing: '0.06em',
-                          whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                         }}>{role.sub}</p>
                       </div>
                     </button>
@@ -430,16 +412,16 @@ export default function LoginPage() {
                 type="submit" disabled={isLoading}
                 style={{
                   width: '100%', height: '48px', borderRadius: '9999px', border: 'none',
-                  background: isLoading ? '#94a3b8' : 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+                  backgroundColor: isLoading ? 'var(--color-surface-400)' : 'var(--color-primary)',
                   color: '#fff', fontSize: '0.875rem', fontWeight: 700,
                   cursor: isLoading ? 'not-allowed' : 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                   transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-                  boxShadow: isLoading ? 'none' : '0 6px 20px rgba(79, 70, 229, 0.25)',
+                  boxShadow: isLoading ? 'none' : '0 6px 20px rgba(26, 86, 219, 0.35)',
                   letterSpacing: '-0.01em',
                 }}
-                onMouseEnter={e => { if (!isLoading) { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(79, 70, 229, 0.35)' }}}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(79, 70, 229, 0.25)' }}
+                onMouseEnter={e => { if (!isLoading) { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(26, 86, 219, 0.45)' }}}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(26, 86, 219, 0.35)' }}
               >
                 {isLoading ? (
                   <>
@@ -463,17 +445,17 @@ export default function LoginPage() {
                 style={{
                   width: '100%', height: '48px', borderRadius: '9999px',
                   border: 'none',
-                  backgroundColor: '#f1f5f9',
-                  color: '#475569', fontSize: '0.875rem', fontWeight: 600,
+                  backgroundColor: 'var(--color-surface-200)',
+                  color: 'var(--color-text)', fontSize: '0.875rem', fontWeight: 700,
                   cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                   transition: 'all 0.2s ease',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#e2e8f0' }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#f1f5f9' }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'var(--color-surface-300)' }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'var(--color-surface-200)' }}
               >
                 SSO Login
-                <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>link</span>
+                <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>vpn_key</span>
               </button>
             </div>
           </form>
