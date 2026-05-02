@@ -13,6 +13,7 @@ import HRPage from './pages/HRPage'
 import ProfilePage from './pages/ProfilePage'
 import SettingsPage from './pages/SettingsPage'
 import NotFoundPage from './pages/NotFoundPage'
+import VoiceflowChat from './components/UI/VoiceflowChat'
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth()
@@ -76,6 +77,8 @@ export default function App() {
         <AuthProvider>
           <ToastProvider>
             <AppRoutes />
+            {/* Voiceflow AI chatbot – renders globally across all pages */}
+            <VoiceflowChat />
           </ToastProvider>
         </AuthProvider>
       </ThemeProvider>
